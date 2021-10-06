@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
@@ -6,44 +6,66 @@ import InfoIcon from "@mui/icons-material/Info";
 import CollectionsIcon from "@mui/icons-material/Collections";
 import WorkIcon from "@mui/icons-material/Work";
 import ContactSupportIcon from "@mui/icons-material/ContactSupport";
+import gsap from "gsap";
 
 const Header = () => {
+  const ham = useRef();
+  const nav = useRef();
+  const ul = useRef();
+
+  const onHamClick = () => {
+    ham.current.classList.toggle("active");
+    nav.current.classList.toggle("active");
+    const listItems = document.querySelectorAll(".list-item");
+    if (nav.current.classList.contains("active")) {
+      gsap.fromTo(ul.current, { height: 0, visibility: "hidden" }, { visibility: "visible", height: "225px", duration: 0.3, delay: 0 });
+      listItems.forEach((item) => {
+        gsap.fromTo(item, { visibility: "hidden" }, { visibility: "visible", duration: 0.3, delay: 0.2 });
+      });
+    }
+  };
+
   return (
     <Container>
-      <div className="nav-container">
-        <ul>
-          <li>
+      <div className="nav-container" ref={nav}>
+        <ul ref={ul}>
+          <li className="list-item">
             <Link to="/">
-              <HomeIcon className="home-icon" />
+              <HomeIcon className="home-icon icon" />
               Home
             </Link>
           </li>
-          <li>
+          <li className="list-item">
             <Link to="/about">
-              <InfoIcon className="about-icon" />
+              <InfoIcon className="about-icon icon" />
               About Us
             </Link>
           </li>
-          <li>
+          <li className="list-item">
             <Link to="/collections">
-              <CollectionsIcon className="collection-icon" />
+              <CollectionsIcon className="collection-icon icon" />
               Zest Collections
             </Link>
           </li>
-          <li>
+          <li className="list-item">
             <Link to="/projects">
-              <WorkIcon className="project-icon" />
+              <WorkIcon className="project-icon icon" />
               Projects
             </Link>
           </li>
-          <li>
+          <li className="list-item">
             <Link to="/contact">
-              <ContactSupportIcon className="contact-icon" />
+              <ContactSupportIcon className="contact-icon icon" />
               Contact Us
             </Link>
           </li>
         </ul>
       </div>
+      <HamburgerMenu ref={ham} onClick={() => onHamClick()}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </HamburgerMenu>
     </Container>
   );
 };
@@ -54,11 +76,14 @@ const Container = styled.div`
   width: 100vw;
   height: 70px;
   background-color: #090b13;
+  display: flex;
+  align-items: center;
 
   .nav-container {
     width: 100%;
     height: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 
@@ -69,6 +94,7 @@ const Container = styled.div`
       align-items: center;
       justify-content: space-between;
       column-gap: 30px;
+      position: relative;
 
       li {
         a {
@@ -112,5 +138,117 @@ const Container = styled.div`
         }
       }
     }
+  }
+
+  @media only screen and (max-width: 1280px) {
+    .nav-container {
+      ul {
+        width: 80%;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .nav-container {
+      ul {
+        width: 90%;
+
+        li {
+          .icon {
+            font-size: 0.6rem;
+          }
+
+          a {
+            font-size: 0.7rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 680px) {
+    justify-content: flex-end;
+    padding-right: 30px;
+    position: relative;
+    padding: 0;
+
+    .nav-container {
+      display: none;
+
+      &.active {
+        width: 100%;
+        display: flex;
+
+        ul {
+          width: 300px;
+          flex-direction: column;
+          position: absolute;
+          top: 70px;
+          right: 0;
+          background-color: #090b13;
+          visibility: hidden;
+
+          li {
+            width: 100%;
+            transition: all 0.3s ease;
+            align-items: flex-start;
+
+            a {
+              width: 100%;
+              padding: 15px 20px;
+            }
+
+            a::after {
+              display: none;
+            }
+
+            &:hover {
+              background-color: #11131c;
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const HamburgerMenu = styled.div`
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  right: 20px;
+
+  span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background-color: #f2f2f2;
+    margin-bottom: 3px;
+    transition: all 0.3s ease;
+  }
+
+  &.active {
+    span {
+      position: relative;
+    }
+
+    span:nth-of-type(1) {
+      transform: rotateZ(45deg);
+      top: 0;
+    }
+
+    span:nth-of-type(3) {
+      top: -3.8px;
+      left: 0px;
+      transform: rotateZ(-45deg);
+    }
+
+    span:nth-of-type(2) {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 680px) {
+    display: block;
   }
 `;
