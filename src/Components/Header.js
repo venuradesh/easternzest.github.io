@@ -95,6 +95,7 @@ const Container = styled.div`
       justify-content: space-between;
       column-gap: 30px;
       position: relative;
+      max-height: 70px;
 
       li {
         a {
@@ -171,6 +172,7 @@ const Container = styled.div`
     padding-right: 30px;
     position: relative;
     padding: 0;
+    z-index: 100;
 
     .nav-container {
       display: none;
@@ -185,6 +187,7 @@ const Container = styled.div`
           position: absolute;
           top: 70px;
           right: 0;
+          max-height: 225px;
           background-color: #090b13;
           visibility: hidden;
 
