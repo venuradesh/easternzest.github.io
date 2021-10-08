@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
+import ImageSlider from "./Home/ImageSlider";
 import LogoBanner from "./Home/LogoBanner";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
     <Container>
       <Header />
       <LogoBanner />
+      <ImageSlider />
     </Container>
   );
 };
@@ -27,7 +29,7 @@ const Container = styled.div`
     right: 0;
     bottom: 0;
     z-index: -10;
-    background-image: url("/images/home-background.png");
+    // background-image: url("/images/home-background.png");
     background-size: cover;
     background-repeat: none;
     background-position: top;
