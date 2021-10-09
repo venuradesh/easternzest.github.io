@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -6,36 +7,20 @@ import "slick-carousel/slick/slick-theme.css";
 import gsap from "gsap";
 
 const ImageSlider = () => {
-  const entranceTint = useRef(null);
   const slider = useRef(null);
 
-  const beforeChange = (prev, next) => {
-    const trackChilds = document.querySelector(".slick-track").childNodes;
-    trackChilds.forEach((child) => {
-      if (!child.classList.contains("slick-cloned")) {
-        if (child.classList.contains("slick-active")) {
-        }
-      }
-    });
-  };
-
-  const afterChange = (index) => {
-    if (index === 0) {
-    }
-  };
-
   const settings = {
-    dots: false,
+    dots: true,
     infinity: true,
-    speed: 200,
-    autoplaySpeed: 10000,
+    speed: 1000,
+    arrows: true,
+    autoplaySpeed: 11000,
     fade: false,
-    autoplay: false,
+    autoplay: true,
     lazyload: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    beforeChange,
-    afterChange,
+    pauseOnHover: false,
     className: "slick-embedded",
   };
 
@@ -43,27 +28,50 @@ const ImageSlider = () => {
     <Carousel {...settings} ref={slider}>
       <Wrap>
         <div className="image" src="/images/main-entrance.jpg"></div>
-        {/* <img src="/images/main-entrance.jpg" alt="Main Entrance" /> */}
-        <span>Welcome to</span>
-        <span>Eastern University Sri Lanka</span>
+        <div className="caption-container">
+          <div className="text-container">
+            <span>Welcome to</span>
+            <span>Eastern University Sri Lanka</span>
+          </div>
+          <div className="btn-container">
+            <a href="https://www.esn.ac.lk/">Visit Now</a>
+          </div>
+          <div className="quote">Centre of Excellence for Higher Education and Research</div>
+        </div>
       </Wrap>
       <Wrap>
         <div className="image" src="/images/trinco-cover.png"></div>
-        <span>Welcome to</span>
-
-        {/* <img src="/images/trinco-cover.png" alt="Main Entrance" /> */}
+        <div className="caption-container">
+          <div className="text-container">
+            <span>Trincomalee Campus</span>
+          </div>
+          <div className="btn-container">
+            <a href="http://www.tc.esn.ac.lk/">Visit Now</a>
+          </div>
+          <div className="quote">institution with academic excellence and human values</div>
+        </div>
       </Wrap>
       <Wrap>
         <div className="image" src="/images/cover-2.png"></div>
-        <span>Welcome to</span>
-
-        {/* <img src="/images/cover-2.png" alt="Main Entrance" /> */}
+        <div className="caption-container">
+          <div className="text-container">
+            <span>Spiritus 2020</span>
+          </div>
+          <div className="btn-container">
+            <a href="#">View More</a>
+          </div>
+        </div>
       </Wrap>
       <Wrap>
         <div className="image" src="/images/cover-3.png"></div>
-        <span>Welcome to</span>
-
-        {/* <img src="/images/cover-3.png" alt="Main Entrance" /> */}
+        <div className="caption-container">
+          <div className="text-container">
+            <span>Fresher's meet 2020</span>
+          </div>
+          <div className="btn-container">
+            <a href="#">View more</a>
+          </div>
+        </div>
       </Wrap>
     </Carousel>
   );
@@ -93,41 +101,150 @@ const Carousel = styled(Slider)`
         right: 0;
         bottom: 0;
         background-color: #1d212f;
-        opacity: 0;
-        animation-name: slideDown;
-        animation-duration: 1.5s;
+        opacity: 0.6;
+        visibility: hidden;
+        animation: slideDown 1.5s, slideUp 1s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
         animation-timing-function: ease-in-out;
-        animation-delay: 3s;
+        animation-delay: 1s, 10s;
       }
     }
 
     @keyframes slideDown {
+      0% {
+        bottom: 500px;
+        visibility: hidden;
+      }
+
+      1% {
+        visibility: visible;
+      }
+
+      100% {
+        bottom: 0px;
+        visibility: visible;
+      }
+    }
+
+    @keyframes slideUp {
       from {
+        bottom: 0px;
+        opacity: 0.6;
+      }
+      to {
         bottom: 500px;
         opacity: 0;
       }
-      to {
-        bottom: 0px;
-        opacity: 0.6;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        top: -20px;
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      1% {
+        visibility: visible;
+      }
+
+      100% {
+        top: 0px;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+    @keyframes fadeOut {
+      0% {
+        top: 0px;
+        opacity: 1;
+      }
+
+      100% {
+        top: -20px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes zoomIn {
+      0% {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      1% {
+        visibility: visible;
+      }
+
+      100% {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    @keyframes zoomOut {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .caption-container {
+      .text-container {
+        span {
+          animation: fadeIn 1.5s ease-in-out 3s 1 forwards, fadeOut 1s ease-in-out 9s 1 forwards;
+        }
+      }
+
+      .btn-container {
+        a {
+          animation: zoomIn 1s ease-in-out 4s 1 forwards, zoomOut 1s ease-in-out 9s 1 forwards;
+        }
+      }
+
+      .quote {
+        animation: zoomIn 1.5s ease-in-out 5s 1 forwards, zoomOut 1s ease-in-out 9s 1 forwards;
+      }
+    }
+  }
+
+  .slick-prev {
+    left: 3% !important;
+    z-index: 1;
+  }
+  .slick-next {
+    right: 3% !important;
+    z-index: 1;
+  }
+
+  ul {
+    position: absolute;
+    bottom: 10px;
+
+    li {
+      button {
+        &::before {
+          font-size: 0.8rem;
+        }
+      }
+
+      &.slick-active {
+        button {
+          &::before {
+            color: white;
+          }
+        }
       }
     }
   }
 `;
 
 const Wrap = styled.div`
-  // position: relative;
-
-  img {
-    width: 100vw;
-    // min-height: 300px;
-    max-height: 500px;
-    object-fit: cover;
-    background-size: contain;
-    border: 4px solid #1d212f;
-    opacity: 1;
-  }
+  position: relative;
 
   .tint {
     top: 0;
@@ -150,8 +267,102 @@ const Wrap = styled.div`
     position: relative;
   }
 
-  span {
+  .caption-container {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+    .text-container {
+      span {
+        color: #f2f2f2;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        visibility: hidden;
+
+        &:first-of-type {
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+
+        &: last-of-type {
+          font-size: 2.5rem;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .btn-container {
+      height: max-content;
+      margin-top: 30px;
+
+      a {
+        font-size: 1rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #f2f2f2;
+        font-weight: 600;
+        padding: 15px 30px;
+        background-color: #090b13;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+        visibility: hidden;
+
+        &:hover {
+          background-color: #1e2230;
+        }
+      }
+    }
+
+    .quote {
+      margin-top: 30px;
+      color: #f2f2f2;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      visibility: hidden;
+    }
+  }
+
+  @media only screen and (max-width: 1280px) {
+    .caption-container {
+      width: 80vw;
+    }
+  }
+
+  @media only screen and (max-width: 980px) {
+    .caption-container {
+      .text-container {
+        span {
+          &:first-of-type {
+            font-size: 1.2rem;
+          }
+
+          &:last-of-type {
+            font-size: 2rem;
+          }
+        }
+      }
+
+      .btn-container {
+        a {
+          padding: 10px 20px;
+          font-size: 1rem;
+        }
+      }
+
+      .quote {
+        font-size: 0.8rem;
+      }
+    }
   }
 
   @media only screen and (max-width: 800px) {
@@ -163,6 +374,66 @@ const Wrap = styled.div`
   @media only screen and (max-width: 650px) {
     .image {
       min-height: 300px;
+    }
+    .caption-container {
+      width: 90vw;
+
+      .text-container {
+        span {
+          &:first-of-type {
+            font-size: 1rem;
+          }
+
+          &:last-of-type {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .btn-container {
+        a {
+          font-size: 0.8rem;
+          padding: 10px 15px;
+        }
+      }
+
+      .quote {
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .caption-container {
+      width: 80vw;
+
+      .text-container {
+        text-align: center;
+
+        span {
+          &:first-of-type {
+            font-size: 0.7rem;
+          }
+
+          &:last-of-type {
+            font-size: 1rem;
+          }
+        }
+      }
+
+      .btn-container {
+        margin-top: 20px;
+
+        a {
+          font-size: 0.6rem;
+        }
+      }
+
+      .quote {
+        font-size: 0.6rem;
+        text-align: center;
+        width: 80%;
+      }
     }
   }
 
