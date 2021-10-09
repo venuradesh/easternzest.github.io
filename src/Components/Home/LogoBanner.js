@@ -31,6 +31,7 @@ const Container = styled.div`
   justify-content: space-evenly;
   align-items: center;
   padding: 0 50px;
+  cursor: default;
 
   .eastern-zest-logo {
     width: 200px;
