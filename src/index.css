@@ -1,3 +1,10 @@
+:root {
+  --bg-dark-clr: #120c10;
+  --bg-white-clr: #f2f2f2;
+  --bg-light-clr: #1d222f;
+  --txt-dark-clr: #3e4155;
+}
+
 * {
   margin: 0;
   padding: 0;

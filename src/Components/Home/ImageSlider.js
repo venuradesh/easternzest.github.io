@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -24,8 +23,18 @@ const ImageSlider = () => {
     className: "slick-embedded",
   };
 
+  useEffect(() => {
+    gsap.from(".image-slider", 2, {
+      opacity: 0,
+    });
+
+    gsap.from(".image", 2, {
+      scale: 1.2,
+    });
+  }, []);
+
   return (
-    <Carousel {...settings} ref={slider}>
+    <Carousel {...settings} ref={slider} className="image-slider">
       <Wrap>
         <div className="image" src="/images/main-entrance.jpg"></div>
         <div className="caption-container">
@@ -245,6 +254,7 @@ const Carousel = styled(Slider)`
 
 const Wrap = styled.div`
   position: relative;
+  overflow: hidden;
 
   .tint {
     top: 0;
