@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
+import Society from "./Home/AboutSociety";
 import ImageSlider from "./Home/ImageSlider";
 import LogoBanner from "./Home/LogoBanner";
 
@@ -10,6 +11,7 @@ const Home = () => {
       <Header />
       <LogoBanner />
       <ImageSlider />
+      <Society />
     </Container>
   );
 };

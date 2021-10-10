@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import gsap from "gsap";
 
 const LogoBanner = () => {
+  useEffect(() => {
+    gsap.from(".logo-banner div", 4, {
+      opacity: 0,
+      stagger: {
+        amount: 0.4,
+      },
+    });
+  }, []);
+
   return (
-    <Container>
+    <Container className="logo-banner">
       <div className="eastern-zest-logo"></div>
       <div className="eastern-uni-logo-container">
         <div className="eastern-uni-logo"></div>

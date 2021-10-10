@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
@@ -12,6 +12,15 @@ const Header = () => {
   const ham = useRef();
   const nav = useRef();
   const ul = useRef();
+
+  useEffect(() => {
+    const tl = gsap.timeline();
+    tl.to(".overlay", 2, {
+      opacity: 0,
+    }).to(".overlay", 0, {
+      css: { display: "none" },
+    });
+  }, []);
 
   const onHamClick = () => {
     ham.current.classList.toggle("active");
@@ -30,30 +39,35 @@ const Header = () => {
       <div className="nav-container" ref={nav}>
         <ul ref={ul}>
           <li className="list-item">
+            <div className="overlay"></div>
             <Link to="/">
               <HomeIcon className="home-icon icon" />
               Home
             </Link>
           </li>
           <li className="list-item">
+            <div className="overlay"></div>
             <Link to="/about">
               <InfoIcon className="about-icon icon" />
               About Us
             </Link>
           </li>
           <li className="list-item">
+            <div className="overlay"></div>
             <Link to="/collections">
               <CollectionsIcon className="collection-icon icon" />
               Zest Collections
             </Link>
           </li>
           <li className="list-item">
+            <div className="overlay"></div>
             <Link to="/projects">
               <WorkIcon className="project-icon icon" />
               Projects
             </Link>
           </li>
           <li className="list-item">
+            <div className="overlay"></div>
             <Link to="/contact">
               <ContactSupportIcon className="contact-icon icon" />
               Contact Us
@@ -98,6 +112,18 @@ const Container = styled.div`
       max-height: 70px;
 
       li {
+        position: relative;
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          background-color: #090b13;
+          z-index: 1;
+        }
+
         a {
           text-decoration: none;
           color: #f2f2f2;
