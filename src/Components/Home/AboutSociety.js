@@ -1,15 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const Society = () => {
+  useEffect(() => {
+    const tl = gsap.timeline();
+    const tl2 = gsap.timeline();
+    tl.fromTo(".logo-eastern-waves", { x: -100, opacity: 0 }, { x: 0, opacity: 1 });
+    tl.fromTo(".waves-text", { x: 100, opacity: 0 }, { x: 0, opacity: 1 });
+
+    tl2.fromTo(".logo-eastern-zest", { x: 100, opacity: 0 }, { x: 0, opacity: 1 });
+    tl2.fromTo(".zest-text", { x: -100, opacity: 0 }, { x: 0, opacity: 1 });
+
+    ScrollTrigger.create({
+      animation: tl,
+      scrub: true,
+      trigger: ".eastern-waves",
+      start: "top 90%",
+      end: "bottom 60%",
+    });
+
+    ScrollTrigger.create({
+      animation: tl2,
+      trigger: ".eastern-zest",
+      scrub: true,
+      start: "top 90%",
+      end: "bottom 70%",
+    });
+  }, []);
+
   return (
     <Container>
       <div className="eastern-waves" id="eastern-waves">
-        <div className="logo">
+        <div className="logo logo-eastern-waves">
           <img src="/images/eastern-waves-logo.png" alt="eastern waves logo" />
         </div>
-        <div className="text-container">
+        <div className="text-container waves-text">
           <div className="title">Eastern Waves</div>
           <div className="desc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea in voluptatem aperiam incidunt neque nobis exercitationem? Facilis, labore vero architecto at porro veniam ab adipisci quia officia eius, quae nihil voluptatem consequatur expedita suscipit pariatur molestias aspernatur molestiae. Voluptate, magnam?</div>
           <div className="btn-container">
@@ -22,10 +51,10 @@ const Society = () => {
         </div>
       </div>
       <div className="eastern-zest">
-        <div className="logo" id="eastern-zest">
+        <div className="logo logo-eastern-zest" id="eastern-zest">
           <img src="/images/eastern-zest-logo-black.png" alt="Eastern zest logo" />
         </div>
-        <div className="text-container">
+        <div className="text-container zest-text">
           <div className="title">Eastern Waves Zest</div>
           <div className="desc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea in voluptatem aperiam incidunt neque nobis exercitationem? Facilis, labore vero architecto at porro veniam ab adipisci quia officia eius, quae nihil voluptatem consequatur expedita suscipit pariatur molestias aspernatur molestiae. Voluptate, magnam?</div>
           <div className="btn-container">
