@@ -41,7 +41,6 @@ const Container = styled.div`
   justify-content: space-evenly;
   align-items: center;
   padding: 0 50px;
-  cursor: default;
 
   .eastern-zest-logo {
     width: 200px;
@@ -60,10 +59,11 @@ const Container = styled.div`
     .span-container {
       display: flex;
       flex-direction: column;
+      cursor: default;
 
       span {
         margin-left: 20px;
-        color: #ffffff;
+        color: var(--bg-white-clr);
         text-transform: uppercase;
         text-shadow: 3px 5px 7px rgba(0, 0, 0, 1);
 

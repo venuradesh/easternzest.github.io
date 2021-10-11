@@ -90,7 +90,7 @@ const Container = styled.div`
   width: 100vw;
   max-width: 100vw;
   height: 70px;
-  background-color: #090b13;
+  background-color: var(--bg-dark-clr);
   display: flex;
   align-items: center;
   position: sticky;
@@ -124,13 +124,13 @@ const Container = styled.div`
           left: 0;
           bottom: 0;
           right: 0;
-          background-color: #090b13;
+          background-color: var(--bg-dark-clr);
           z-index: 1;
         }
 
         a {
           text-decoration: none;
-          color: #f2f2f2;
+          color: var(--bg-white-clr);
           font-size: 0.8rem;
           font-weight: 600;
           letter-spacing: 1.2px;
@@ -156,7 +156,7 @@ const Container = styled.div`
             right: 0;
             left: 0;
             bottom: -5px;
-            background-color: #f2f2f2;
+            background-color: var(--bg-white-clr);
             transform: scale(0);
             transition: all 0.3s ease;
           }
@@ -218,7 +218,7 @@ const Container = styled.div`
           top: 70px;
           right: 0;
           max-height: 225px;
-          background-color: #090b13;
+          background-color: var(--bg-dark-clr);
           visibility: hidden;
 
           li {
@@ -236,7 +236,7 @@ const Container = styled.div`
             }
 
             &:hover {
-              background-color: #11131c;
+              background-color: var(--bg-light-clr);
             }
           }
         }
@@ -255,7 +255,7 @@ const HamburgerMenu = styled.div`
     display: block;
     width: 18px;
     height: 2px;
-    background-color: #f2f2f2;
+    background-color: var(--bg-white-clr);
     margin-bottom: 3px;
     transition: all 0.3s ease;
   }
