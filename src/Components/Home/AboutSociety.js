@@ -116,7 +116,7 @@ const Container = styled.div`
 
       .desc{
         font-size:1rem;
-        color:#262A3A;
+        color:var(--text-dark-clr);
         margin-bottom:20px;
         font-weight: 500;
         text-align:center;

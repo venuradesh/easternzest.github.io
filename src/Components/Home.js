@@ -4,6 +4,7 @@ import Header from "./Header";
 import Society from "./Home/AboutSociety";
 import ImageSlider from "./Home/ImageSlider";
 import LogoBanner from "./Home/LogoBanner";
+import ParallaxSection from "./Home/Parallax";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <LogoBanner />
       <ImageSlider />
       <Society />
+      <ParallaxSection />
     </Container>
   );
 };
