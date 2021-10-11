@@ -88,10 +88,14 @@ export default Header;
 
 const Container = styled.div`
   width: 100vw;
+  max-width: 100vw;
   height: 70px;
   background-color: #090b13;
   display: flex;
   align-items: center;
+  position: sticky;
+  top: 0px;
+  z-index: 100;
 
   .nav-container {
     width: 100%;

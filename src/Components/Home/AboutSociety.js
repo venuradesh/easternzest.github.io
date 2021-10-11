@@ -77,6 +77,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 130px;
+  box-sizing:border-box;
+  max-width: 100vw;
+  overflow:hidden;
 
   .eastern-waves, .eastern-zest {
     display: flex;
@@ -271,25 +274,29 @@ const Container = styled.div`
   }
 
   @media only screen and (max-width: 580px){
-    margin: 0 auto;
-
+    padding:40px 0;
+    
     .eastern-waves, .eastern-zest{
       flex-direction:column;
       align-items:center;
+      max-width: 70vw;
+      margin:0 auto;
 
       .logo{
+        margin:0 auto;
         margin-bottom:20px;
       }
 
       .text-container{
-        width: 100vw;
+        margin: 0 auto;
+        width: 50vw;
 
         .title{
-          width: calc(100vw - 150px);
+          width: 50vw;
         }
 
         .desc{
-          width: calc(100vw - 150px);
+          width: 50vw;
         }
 
         .btn-container{

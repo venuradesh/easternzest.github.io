@@ -89,7 +89,7 @@ const ImageSlider = () => {
 export default ImageSlider;
 
 const Carousel = styled(Slider)`
-  width: 100vw;
+  max-width: 100vw;
   height: max-content;
   overflow: hidden;
   background-color: #1d212f;
@@ -102,6 +102,8 @@ const Carousel = styled(Slider)`
 
   .slick-active {
     .image {
+      max-width: 100vw;
+
       &::after {
         content: "";
         position: absolute;
@@ -203,6 +205,8 @@ const Carousel = styled(Slider)`
     }
 
     .caption-container {
+      max-width: 80vw;
+
       .text-container {
         span {
           animation: fadeIn 1.5s ease-in-out 3s 1 forwards, fadeOut 1s ease-in-out 9s 1 forwards;
